@@ -1,0 +1,50 @@
+import java.util.*;
+public class GreenTicket {
+    public static int greenTicket(int a, int b, int c) {
+        if (a == b && b == c) {
+            return 20;
+        } else if (a == b || b == c || a == c) {
+            return 10;
+        } else {
+            return 0;
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(greenTicket(1, 2, 3));  // Output: 0
+        System.out.println(greenTicket(2, 2, 2));  // Output: 20
+        System.out.println(greenTicket(1, 1, 2));  // Output: 10
+    }
+}import java.util.regex.*;
+
+public class PasswordChecker {
+    public static void main(String[] args) {
+        String password = "YourPassword123#";  // Replace this with the actual password to be checked
+        int result = isValidPassword(password);
+        System.out.println(result);
+    }
+
+    public static int isValidPassword(String password) {
+        // Check length
+        if (password.length() < 8) {
+            return 0;
+        }
+
+        // Check for at least one uppercase, one lowercase, one digit, and one special character
+        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=]).*$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(password);
+
+        if (!matcher.matches()) {
+            return 0;
+        }
+
+        // Check for white spaces
+        if (password.contains(" ")) {
+            return 0;
+        }
+
+        // If all checks pass, return 1 (valid password)
+        return 1;
+    }
+}
